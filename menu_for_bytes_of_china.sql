@@ -264,3 +264,52 @@ INSERT INTO categories_dishes VALUES (
   17.95
 );
 
+-- Write simple queries:
+
+-- display the restaurant name, its address (street number and name) and telephone number
+select 
+restaurant.name,
+address.street_number, 
+address.street_name,
+restaurant.telephone
+from restaurant
+inner join address 
+ on restaurant.id = address.restaurant_id;
+
+-- get the best rating the restaurant ever received
+select rating, description
+from review
+where rating = (select max(rating) from review);
+
+-- display a dish name, its price and category sorted by the dish name
+select 
+category.name as category,
+dish.name as dish_name,
+categories_dishes.price as price
+from category
+inner join categories_dishes
+  on category.id = categories_dishes.category_id
+inner join dish 
+  on dish.id = categories_dishes.dish_id;
+
+-- display the results as follows, sorted by category name
+select 
+category.name as category,
+dish.name as spicy_dish_name,
+categories_dishes.price as price
+from category
+inner join categories_dishes
+  on category.id = categories_dishes.category_id
+inner join dish 
+  on dish.id = categories_dishes.dish_id
+where dish.hot_and_spicy = true;
+
+-- display all the spicy dishes, their prices and category
+select
+dish.name as dish_name,
+COUNT(dish_id) as dish_count
+from categories_dishes
+inner join dish
+  on dish.id = categories_dishes.dish_id
+group by 1
+having count(dish_id) > 1;
