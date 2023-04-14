@@ -33,3 +33,15 @@ create table category (
 select constraint_name, table_name, column_name
 from information_schema.key_column_usage
 where table_name = 'category';
+
+create table dish (
+  id integer PRIMARY KEY,
+  name varchar(50),
+  price money,
+  description varchar(200),
+  hot_and_spicy boolean
+);
+
+select constraint_name, table_name, column_name
+from information_schema.key_column_usage
+where table_name = 'dish';
