@@ -58,3 +58,14 @@ create table review (
 select constraint_name, table_name, column_name
 from information_schema.key_column_usage
 where table_name = 'review';
+
+create table categories_dishes (
+  category_id char(2) REFERENCES category(id),
+  dish_id integer REFERENCES dish(id),
+  PRIMARY KEY (category_id, dish_id),
+  price money
+);
+
+select constraint_name, table_name, column_name
+from information_schema.key_column_usage
+where table_name = 'categories_dishes';
