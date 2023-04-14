@@ -45,3 +45,14 @@ create table dish (
 select constraint_name, table_name, column_name
 from information_schema.key_column_usage
 where table_name = 'dish';
+
+create table review (
+  id integer PRIMARY KEY,
+  rating decimal,
+  description varchar(200),
+  date date
+);
+
+select constraint_name, table_name, column_name
+from information_schema.key_column_usage
+where table_name = 'review';
