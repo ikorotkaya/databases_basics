@@ -51,7 +51,8 @@ create table review (
   id integer PRIMARY KEY,
   rating decimal,
   description varchar(200),
-  date date
+  date date,
+  restaurant_id integer REFERENCES restaurant(id)
 );
 
 select constraint_name, table_name, column_name
